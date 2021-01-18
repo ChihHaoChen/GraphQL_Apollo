@@ -20,3 +20,6 @@ class UserResolver	{
 		return await UserModel.findById(ctx.res.locals.userId)
 	}
 }
+
+
+export { UserResolver as default }
