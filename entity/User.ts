@@ -17,7 +17,7 @@ class User {
 	password: string
 
 	@Field()
-	@Property({ required: true })
+	@Property({ required: false })
 	phone: string
 }
 

@@ -3,13 +3,13 @@ import { ObjectId } from 'mongodb'
 import MyContext from '../types/MyContext';
 import isAuthorized from '../middleware/isAuthorized'
 import { User, UserModel } from '../entity/User'
-import objectIdScalar from '../schema/object-id.scalar'
+import ObjectIdScalar from '../schema/object-id.scalar'
 
 
 @Resolver(() => User)
 class UserResolver	{
 	@Query(() => User, { nullable: true })
-	async user(@Arg('userId', () => objectIdScalar) userId: ObjectId)	{
+	async user(@Arg('userId', () => ObjectIdScalar) userId: ObjectId)	{
 		return await UserModel.findById(userId)
 	}
 

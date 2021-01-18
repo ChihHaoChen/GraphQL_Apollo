@@ -2,7 +2,7 @@ import { GraphQLScalarType, Kind } from 'graphql'
 import { ObjectId } from 'mongodb'
 
 
-const objectIdScalar = new GraphQLScalarType({
+const ObjectIdScalar = new GraphQLScalarType({
 	name: 'objectId',
 	description: 'Mongo object id scalar type',
 	parseValue(value: string)	{
@@ -20,4 +20,4 @@ const objectIdScalar = new GraphQLScalarType({
 })
 
 
-export { objectIdScalar as default }
+export { ObjectIdScalar as default }
