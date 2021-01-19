@@ -1,4 +1,4 @@
-import { Resolver, Query, UseMiddleware, Arg, Ctx } from 'type-graphql'
+import { Resolver, Query, UseMiddleware, Arg, Ctx, Mutation } from 'type-graphql'
 import { ObjectId } from 'mongodb'
 import MyContext from '../types/MyContext';
 import isAuthorized from '../middleware/isAuthorized'
@@ -18,6 +18,19 @@ class UserResolver	{
 	@UseMiddleware(isAuthorized)
 	async currentUser(@Ctx() ctx: MyContext): Promise<User | null>	{
 		return await UserModel.findById(ctx.res.locals.userId)
+	}
+
+
+	@Mutation(() => Boolean)
+	@UseMiddleware(isAuthorized)
+	async removeUser(@Ctx() ctx: MyContext): Promise<Boolean | undefined>	{
+		const removedUser = await UserModel.findOneAndDelete(ctx.res.locals.userId)
+
+		if (!removedUser)	{
+			throw new Error('User not found')
+		}
+
+		return true
 	}
 }
 

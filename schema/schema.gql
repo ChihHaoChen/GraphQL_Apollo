@@ -12,6 +12,7 @@ input AuthInput {
 type Mutation {
   addTask(input: TaskInput!): Task!
   removeTask(taskId: objectId!): Boolean!
+  removeUser: Boolean!
   signIn(input: AuthInput!): UserResponse!
   signUp(input: AuthInput!): UserResponse!
   updateTask(taskId: objectId!): Task!

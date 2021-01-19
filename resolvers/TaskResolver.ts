@@ -36,7 +36,6 @@ class TaskResolver {
 	@UseMiddleware(isAuthorized)
 	async addTask(
 		@Arg('input') taskInput: TaskInput, @Ctx() ctx: MyContext): Promise<Task>	{
-		console.log('userId =>', ctx.res.locals.userId)
 		const newTask = new TaskModel({ ...taskInput, user: ctx.res.locals.userId } as Task)
 
 		await newTask.save()
@@ -73,7 +72,7 @@ class TaskResolver {
 		@Ctx() ctx: MyContext
 	): Promise<Boolean | undefined>	{
 
-		const removedTask = await TaskModel.findOneAndDeleted({
+		const removedTask = await TaskModel.findOneAndDelete({
 			_id: taskId,
 			user: ctx.res.locals.userId
 		})
