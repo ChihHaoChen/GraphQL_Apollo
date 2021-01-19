@@ -19,7 +19,7 @@ const storeUserId = (user: User): Object => {
 class AuthResolver	{
 
 	@Mutation(() => UserResponse)
-	async signUp(@Arg('input') { email, password }: AuthInput): Promise<UserResponse>	{
+	async signUp(@Arg('input') { email, password, phone }: AuthInput): Promise<UserResponse>	{
 		// 1. Check if user's email already stored in database
 		const existingUser = await UserModel.findOne({ email })
 
@@ -29,7 +29,7 @@ class AuthResolver	{
 
 		// 2. Create a new user with a hashed password
 		const hashedPassword = await bcrypt.hash(password, 10)
-		const user = new UserModel({ email, password: hashedPassword })
+		const user = new UserModel({ email, password: hashedPassword, phone })
 		await user.save()
 
 		// 3. Store the userId with the token payload

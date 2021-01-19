@@ -33,8 +33,10 @@ class TaskResolver {
 
 
 	@Mutation(() => Task)
+	@UseMiddleware(isAuthorized)
 	async addTask(
 		@Arg('input') taskInput: TaskInput, @Ctx() ctx: MyContext): Promise<Task>	{
+		console.log('userId =>', ctx.res.locals.userId)
 		const newTask = new TaskModel({ ...taskInput, user: ctx.res.locals.userId } as Task)
 
 		await newTask.save()
