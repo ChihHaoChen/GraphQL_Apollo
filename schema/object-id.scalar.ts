@@ -3,7 +3,7 @@ import { ObjectId } from 'mongodb'
 
 
 const ObjectIdScalar = new GraphQLScalarType({
-	name: 'objectId',
+	name: 'ObjectId',
 	description: 'Mongo object id scalar type',
 	parseValue(value: string)	{
 		return new ObjectId(value)

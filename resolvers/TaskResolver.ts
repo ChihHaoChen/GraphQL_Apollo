@@ -47,7 +47,7 @@ class TaskResolver {
 	@Mutation(() => Task)
 	@UseMiddleware(isAuthorized)
 	async updateTask(
-		@Arg('taskId', () => ObjectIdScalar) taskInput: TaskInput,
+		@Arg('input') taskInput: TaskInput,
 		@Ctx() ctx: MyContext
 	): Promise<Task>	{
 		const { id, title, description, completedAt } = taskInput

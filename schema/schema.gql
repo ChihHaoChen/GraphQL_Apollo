@@ -6,30 +6,30 @@
 input AuthInput {
   email: String!
   password: String!
-  phone: String!
+  phone: String
 }
 
 type Mutation {
   addTask(input: TaskInput!): Task!
-  removeTask(taskId: objectId!): Boolean!
+  removeTask(taskId: ObjectId!): Boolean!
   removeUser: Boolean!
   signIn(input: AuthInput!): UserResponse!
   signUp(input: AuthInput!): UserResponse!
-  updateTask(taskId: objectId!): Task!
+  updateTask(input: TaskInput!): Task!
 }
 
 """Mongo object id scalar type"""
-scalar objectId
+scalar ObjectId
 
 type Query {
   currentUser: User
-  task(taskId: objectId!): Task
+  task(taskId: ObjectId!): Task
   tasks: [Task!]!
-  user(userId: objectId!): User
+  user(userId: ObjectId!): User
 }
 
 type Task {
-  _id: objectId!
+  _id: ObjectId!
   completedAt: String!
   description: String!
   title: String!
@@ -39,12 +39,12 @@ type Task {
 input TaskInput {
   completedAt: String!
   description: String
-  id: objectId
+  id: ObjectId
   title: String!
 }
 
 type User {
-  _id: objectId!
+  _id: ObjectId!
   email: String!
   password: String!
   phone: String!
