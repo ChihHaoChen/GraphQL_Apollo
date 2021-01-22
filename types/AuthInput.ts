@@ -6,7 +6,7 @@ class AuthInput	{
 	@Field()
 	email: string
 
-	@Field()
+	@Field({ nullable: true })
 	phone: string
 
 	@Field()
