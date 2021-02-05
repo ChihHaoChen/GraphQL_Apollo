@@ -2,9 +2,9 @@ import { connect } from 'mongoose'
 
 
 const createSesssion = async () => {
-	const MONGO_URL = process.env.MONGO_URL || ''
+	const MONGO_URI = process.env.MONGO_URI || ''
 
-	if (!MONGO_URL)	{
+	if (!MONGO_URI)	{
 		throw new Error('Missing MONGO_URL')
 	}
 
@@ -15,7 +15,7 @@ const createSesssion = async () => {
 		useFindAndModify: false,
 	}
 
-	await connect(MONGO_URL, options)
+	await connect(MONGO_URI, options)
 }
 
 
