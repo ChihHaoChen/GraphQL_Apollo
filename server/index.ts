@@ -42,7 +42,11 @@ const createServer = async () => {
 			}
 		})
 
-		apolloServer.applyMiddleware({ app, cors: corsOptions})
+		apolloServer.applyMiddleware({ 
+			app, 
+			path: '/api/graphql',
+			//cors: corsOptions
+	})
 
 		app.listen({ port }, () => {
 			console.log(`Server is ready at http://localhost:${port}${apolloServer.graphqlPath}`)
